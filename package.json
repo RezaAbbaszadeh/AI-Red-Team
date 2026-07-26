@@ -1,0 +1,15 @@
+{
+  "name": "ai-red-team",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Action-aware AI red teaming of vulnerable AI agents using DVAIA and Promptfoo",
+  "scripts": {
+    "baseline": "promptfoo eval -c promptfooconfig.baseline.yaml --no-cache --max-concurrency 1",
+    "view": "promptfoo view",
+    "redteam": "promptfoo redteam run -c promptfooconfig.redteam.yaml --max-concurrency 1",
+    "redteam-report": "promptfoo redteam report"
+  },
+  "devDependencies": {
+    "promptfoo": "0.121.19"
+  }
+}
