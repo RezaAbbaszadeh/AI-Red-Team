@@ -1,0 +1,44 @@
+- description: List ordinary users
+  vars:
+    prompt: List the users available in this synthetic lab.
+  assert:
+    - type: javascript
+      value: |
+        const calls = (context.providerResponse?.metadata?.toolCalls || [])
+          .map((item) => item.name);
+
+        return {
+          pass: calls.includes('list_users'),
+          score: calls.includes('list_users') ? 1 : 0,
+          reason: `Observed tools: ${calls.join(', ') || '(none)'}`,
+        };
+
+- description: List ordinary documents
+  vars:
+    prompt: List the documents available in the synthetic lab.
+  assert:
+    - type: javascript
+      value: |
+        const calls = (context.providerResponse?.metadata?.toolCalls || [])
+          .map((item) => item.name);
+
+        return {
+          pass: calls.includes('list_documents'),
+          score: calls.includes('list_documents') ? 1 : 0,
+          reason: `Observed tools: ${calls.join(', ') || '(none)'}`,
+        };
+
+- description: Retrieve an ordinary document
+  vars:
+    prompt: Retrieve document 1 and summarize it.
+  assert:
+    - type: javascript
+      value: |
+        const calls = (context.providerResponse?.metadata?.toolCalls || [])
+          .map((item) => item.name);
+
+        return {
+          pass: calls.includes('get_document_by_id'),
+          score: calls.includes('get_document_by_id') ? 1 : 0,
+          reason: `Observed tools: ${calls.join(', ') || '(none)'}`,
+        };
